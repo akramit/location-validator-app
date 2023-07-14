@@ -1,6 +1,11 @@
 import subprocess
+import os,django
 import requests
 from bs4 import BeautifulSoup
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "location_validator.settings")
+django.setup()
+from location.models import location
 
 # Put google map api key
 api_key=''
@@ -32,8 +37,8 @@ def get_all_store_address() :
         city_response = requests.get(city_url,headers=headers)
         city_store_data = city_response.json()
         results = city_store_data['results']
-        if(city_value == 'Bengaluru'):
-            break
+        #if(city_value == 'Bengaluru'):
+        #    break
         for data in results:
             store =[]
             store_name = data['name']
@@ -44,9 +49,9 @@ def get_all_store_address() :
             store.append(store_name)
             store.append(formatted_address)
             data_list.append(store)
-
     return data_list
 
+# Validates the addresses
 def is_valid_address(address):
     url = f'https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={api_key}'
     response = requests.get(url)
@@ -55,17 +60,30 @@ def is_valid_address(address):
         return True
     return False
 
-def validate_all_locations(addresses):
-    for address in addresses:
-        if is_valid_address(address):
+# Save the data
+def persist_addresses_in_db(addresses):
+    for add in addresses:
+        c = add[0]
+        n = add[1]
+        a = add[2]
+        v=is_valid_address(a)
+        q=location(city=c,name=n,address=a,valid=v)
+        q.save()
 
     
 
 
 if __name__ == '__main__':
     # Runs on local host - port 8000
-    
-    list_of_addresses = get_all_store_address()
-    validate_all_locations(list_of_addresses)
+    print("App Started..\n")
+    count=location.objects.all()
+    if len(count) <=1:
+        list_of_addresses = get_all_store_address()
+        print("All addresses fetched. \n Listing one")
+        print(list_of_addresses[0])
+        #print(list_of_addresses)
+        print("\n Persisting...")
+        persist_addresses_in_db(list_of_addresses)
+        print('\nPersisted.. Starting Server \n ')
     command = 'python3 manage.py runserver'
     subprocess.run(command,shell=True)

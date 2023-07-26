@@ -31,7 +31,7 @@ OUTPUT:
 RESULT: PASS <br>
 
 ### Demo ###
-<img src="demo/App-running.png" width="100" height="100" >
-<img src="demo/rest-api-call.png" width="100" height="100" >
-<img src="demo/test-api-call.png" width="100" height="100" >
+<img src="demo/App-running.png" width="500" height="300" >
+<img src="demo/rest-api-call.png" width="900" height="300" >
+<!--img src="demo/test-api-call.png" width="900" height="300" -->
 

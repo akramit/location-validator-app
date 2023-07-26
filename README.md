@@ -29,3 +29,8 @@ by validating with Google Map API. The application exposes an API endpoint ```/r
 INPUT:<br>
 OUTPUT:
 RESULT: PASS <br>
+
+### Demo ###
+<img src="demo/app_running.png" width="100" height="100" >
+<img src="demo/rest_api_call.png" width="100" height="100" >
+

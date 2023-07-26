@@ -16,12 +16,12 @@ by validating with Google Map API. The application exposes an API endpoint ```/r
 
 
 ### API Endpoint ###
-1. The API endpoint is ```localhost:8000/result``` is a GET method.
+1. The API endpoint is ```http://127.0.0.1:8000/result``` is a GET method.
 2. The input to the API is provided in the request body in JSON format
 
 
 ### Input and Output ###
-1. The API call is made to ```localhost:8000/result```
+1. The API call is made to ```http://127.0.0.1:8000/result```
 2. The output is returned as a JSON object of invalid location.<br>
 
 ### Tests ###

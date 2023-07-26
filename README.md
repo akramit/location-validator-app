@@ -12,12 +12,13 @@ by validating with Google Map API. The application exposes an API endpoint ```/r
 ### Running the application ###
 1. Clone the repository ```location-validator-app```
 2. Go to directory ```location-validator-app```
-3. Run the command ```docker-compose up -d```
+3. Install Requirements - ```pip3 install requirements.txt```
+4. Run the application ```python3 ./location_validator/start.py```
 
 
 ### API Endpoint ###
 1. The API endpoint is ```http://127.0.0.1:8000/result``` is a GET method.
-2. The input to the API is provided in the request body in JSON format
+
 
 
 ### Input and Output ###
